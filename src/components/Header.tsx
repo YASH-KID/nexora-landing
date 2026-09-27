@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sparkles, Menu, X } from "lucide-react";
+import { Sparkles, Menu, X, Search, Sun, Moon } from "lucide-react";
 
 const LINKS = [
   { label: "Product", href: "#showcase" },
@@ -8,7 +8,15 @@ const LINKS = [
   { label: "Resources", href: "#faq" },
 ];
 
-export default function Header() {
+const isMac = typeof navigator !== "undefined" && /mac/i.test(navigator.platform);
+
+interface HeaderProps {
+  onOpenSearch: () => void;
+  theme: "light" | "dark";
+  toggleTheme: () => void;
+}
+
+export default function Header({ onOpenSearch, theme, toggleTheme }: HeaderProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -30,6 +38,16 @@ export default function Header() {
         </nav>
 
         <div className="header__actions">
+          <button className="search-trigger" onClick={onOpenSearch} aria-label="Open search">
+            <Search size={14} />
+            Search
+            <span className="kbd">{isMac ? "⌘K" : "Ctrl K"}</span>
+          </button>
+
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
+            {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+
           <a href="#login" className="link-btn">
             Log in
           </a>
@@ -43,6 +61,17 @@ export default function Header() {
       </div>
 
       <div className={`mobile-menu ${open ? "open" : ""}`}>
+        <button
+          onClick={() => {
+            setOpen(false);
+            onOpenSearch();
+          }}
+        >
+          <Search size={16} /> Search
+        </button>
+        <button onClick={toggleTheme}>
+          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />} {theme === "dark" ? "Light mode" : "Dark mode"}
+        </button>
         {LINKS.map((link) => (
           <a key={link.label} href={link.href} onClick={() => setOpen(false)}>
             {link.label}

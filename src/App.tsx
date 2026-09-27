@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import LogoStrip from "./components/LogoStrip";
@@ -10,11 +11,16 @@ import Pricing from "./components/Pricing";
 import FAQ from "./components/FAQ";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
+import CommandPalette from "./components/CommandPalette";
+import { useTheme } from "./hooks/useTheme";
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
   return (
     <>
-      <Header />
+      <Header onOpenSearch={() => setPaletteOpen(true)} theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />
         <LogoStrip />
@@ -28,6 +34,7 @@ function App() {
         <FinalCTA />
       </main>
       <Footer />
+      <CommandPalette open={paletteOpen} setOpen={setPaletteOpen} theme={theme} toggleTheme={toggleTheme} />
     </>
   );
 }

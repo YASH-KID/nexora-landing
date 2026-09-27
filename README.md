@@ -9,6 +9,12 @@ A high-end marketing landing page for **Nexora**, a fictional AI workspace/produ
 
 Header → Hero (with product dashboard preview) → Trusted-by logo strip → Features → Product showcase (tabbed) → Integrations → Results/analytics → Testimonials → Pricing → FAQ → Final CTA → Footer.
 
+## Interactive features
+
+- **Dark mode** — a full second theme (not just an inverted header) driven entirely by CSS custom properties; toggled from the header, persisted to `localStorage`, and falls back to the OS `prefers-color-scheme` on first visit.
+- **Seat-based pricing calculator** — a slider in the Pricing section recomputes the Starter/Pro monthly total live as you drag it, reflecting the seat-based pricing model real B2B SaaS products use.
+- **Command palette (⌘K / Ctrl K)** — a Linear/Raycast-style search overlay with live filtering across projects, docs, people and actions, full keyboard navigation (arrows to move, Enter to select, Esc to close), and a working "switch theme" action.
+
 ## Tech stack
 
 - React 19 + TypeScript + Vite
