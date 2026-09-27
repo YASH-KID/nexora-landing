@@ -12,15 +12,17 @@ import FAQ from "./components/FAQ";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import CommandPalette from "./components/CommandPalette";
+import LoginModal from "./components/LoginModal";
 import { useTheme } from "./hooks/useTheme";
 
 function App() {
   const { theme, toggleTheme } = useTheme();
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   return (
     <>
-      <Header onOpenSearch={() => setPaletteOpen(true)} theme={theme} toggleTheme={toggleTheme} />
+      <Header onOpenSearch={() => setPaletteOpen(true)} onOpenLogin={() => setLoginOpen(true)} theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />
         <LogoStrip />
@@ -34,7 +36,14 @@ function App() {
         <FinalCTA />
       </main>
       <Footer />
-      <CommandPalette open={paletteOpen} setOpen={setPaletteOpen} theme={theme} toggleTheme={toggleTheme} />
+      <CommandPalette
+        open={paletteOpen}
+        setOpen={setPaletteOpen}
+        theme={theme}
+        toggleTheme={toggleTheme}
+        onOpenLogin={() => setLoginOpen(true)}
+      />
+      <LoginModal open={loginOpen} setOpen={setLoginOpen} />
     </>
   );
 }

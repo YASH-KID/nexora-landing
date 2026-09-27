@@ -12,11 +12,12 @@ const isMac = typeof navigator !== "undefined" && /mac/i.test(navigator.platform
 
 interface HeaderProps {
   onOpenSearch: () => void;
+  onOpenLogin: () => void;
   theme: "light" | "dark";
   toggleTheme: () => void;
 }
 
-export default function Header({ onOpenSearch, theme, toggleTheme }: HeaderProps) {
+export default function Header({ onOpenSearch, onOpenLogin, theme, toggleTheme }: HeaderProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -48,9 +49,9 @@ export default function Header({ onOpenSearch, theme, toggleTheme }: HeaderProps
             {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
           </button>
 
-          <a href="#login" className="link-btn">
+          <button className="link-btn" onClick={onOpenLogin}>
             Log in
-          </a>
+          </button>
           <a href="#final-cta" className="btn btn-primary">
             Start free
           </a>
@@ -77,9 +78,14 @@ export default function Header({ onOpenSearch, theme, toggleTheme }: HeaderProps
             {link.label}
           </a>
         ))}
-        <a href="#login" onClick={() => setOpen(false)}>
+        <button
+          onClick={() => {
+            setOpen(false);
+            onOpenLogin();
+          }}
+        >
           Log in
-        </a>
+        </button>
         <a href="#final-cta" onClick={() => setOpen(false)}>
           Start free
         </a>

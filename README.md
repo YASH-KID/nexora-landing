@@ -14,6 +14,7 @@ Header → Hero (with product dashboard preview) → Trusted-by logo strip → F
 - **Dark mode** — a full second theme (not just an inverted header) driven entirely by CSS custom properties; toggled from the header, persisted to `localStorage`, and falls back to the OS `prefers-color-scheme` on first visit.
 - **Seat-based pricing calculator** — a slider in the Pricing section recomputes the Starter/Pro monthly total live as you drag it, reflecting the seat-based pricing model real B2B SaaS products use.
 - **Command palette (⌘K / Ctrl K)** — a Linear/Raycast-style search overlay with live filtering across projects, docs, people and actions, full keyboard navigation (arrows to move, Enter to select, Esc to close), and a working "switch theme" action.
+- **Login modal** — real client-side validation (email format, password length), a disabled-until-valid submit button, a loading state, and an email/password *or* SSO path. Since there's no backend behind a portfolio demo, it ends in an honest "you're in — no real account was created" success state rather than pretending to sign in for real.
 
 ## Tech stack
 

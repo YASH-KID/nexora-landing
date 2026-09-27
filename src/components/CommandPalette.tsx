@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { FolderKanban, BookOpen, User, Zap, Search, Moon, Sun, CornerDownLeft } from "lucide-react";
+import { FolderKanban, BookOpen, User, Zap, Search, Moon, Sun, CornerDownLeft, LogIn } from "lucide-react";
 
 interface CommandItem {
   id: string;
@@ -14,6 +14,7 @@ interface CommandPaletteProps {
   setOpen: (open: boolean) => void;
   theme: "light" | "dark";
   toggleTheme: () => void;
+  onOpenLogin: () => void;
 }
 
 const GROUP_ICON = {
@@ -23,7 +24,7 @@ const GROUP_ICON = {
   Actions: Zap,
 };
 
-export default function CommandPalette({ open, setOpen, theme, toggleTheme }: CommandPaletteProps) {
+export default function CommandPalette({ open, setOpen, theme, toggleTheme, onOpenLogin }: CommandPaletteProps) {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -50,8 +51,17 @@ export default function CommandPalette({ open, setOpen, theme, toggleTheme }: Co
           setOpen(false);
         },
       },
+      {
+        id: "a4",
+        label: "Log in",
+        group: "Actions",
+        action: () => {
+          setOpen(false);
+          onOpenLogin();
+        },
+      },
     ],
-    [theme, toggleTheme, setOpen]
+    [theme, toggleTheme, setOpen, onOpenLogin]
   );
 
   const filtered = useMemo(() => {
@@ -127,7 +137,8 @@ export default function CommandPalette({ open, setOpen, theme, toggleTheme }: Co
           {filtered.map((item, i) => {
             const showGroupLabel = item.group !== lastGroup;
             lastGroup = item.group;
-            const Icon = item.group === "Actions" && item.id === "a3" ? (theme === "dark" ? Sun : Moon) : GROUP_ICON[item.group];
+            const Icon =
+              item.id === "a3" ? (theme === "dark" ? Sun : Moon) : item.id === "a4" ? LogIn : GROUP_ICON[item.group];
 
             return (
               <div key={item.id}>
