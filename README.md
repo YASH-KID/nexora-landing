@@ -2,7 +2,7 @@
 
 A high-end marketing landing page for **Nexora**, a fictional AI workspace/productivity platform for teams. Built as a portfolio piece to demonstrate professional B2B SaaS web design — the companion piece to [nova-3d-showcase](https://github.com/YASH-KID/nova-3d-showcase), which showcases 3D/interactive web development instead.
 
-**Live demo:** _added after deployment_
+**Live demo:** https://nexora-landing-gamma.vercel.app
 **Note:** Nexora is a fictional product created for portfolio purposes — it is not a real company or service.
 
 ## Sections
